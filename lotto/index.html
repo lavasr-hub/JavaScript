@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>로또 뽑기</title>
+  <style>
+    body {
+      text-align: center;
+      margin-top: 50px;
+      font-family: Arial, sans-serif;
+    }
+    #lotto {
+      font-size: 18px;
+      margin: 20px 0;
+      display: block;
+      white-space: pre-line;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>태훈이의 로또 뽑기</h1>
+  <span id="lotto"></span>
+  <button onclick="pickLotto()">로또 추첨</button>
+
+  <script>
+    function pickOne() {
+      let numbers = [];
+      while (numbers.length < 6) {
+        let n = Math.floor(Math.random() * 45) + 1; // 1~45
+        if (!numbers.includes(n)) {
+          numbers.push(n);
+        }
+      }
+      return numbers.sort((a, b) => a - b).join(", ");
+    }
+
+    function pickLotto() {
+      let results = [];
+      for (let i = 0; i < 5; i++) {
+        results.push((i+1) + "번째: " + pickOne());
+      }
+      document.getElementById("lotto").textContent = results.join("\n");
+    }
+  </script>
+</body>
+</html>
